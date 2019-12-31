@@ -13,7 +13,6 @@ var VideoPlayer = props => (
       <h3>{props.video.snippet.title}</h3>
       <div>{props.video.snippet.description}</div>
     </div>
-    {console.log(props.video.id.videoId)}
   </div>
 );
 
