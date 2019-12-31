@@ -6,7 +6,7 @@ import exampleVideoData from "../data/exampleVideoData.js";
 var App = () => (
   <div>
     <Search />
-    <VideoPlayer video={{}} />
+    <VideoPlayer video={exampleVideoData[0]} />
     <VideoList videos={exampleVideoData} />
   </div>
 );
