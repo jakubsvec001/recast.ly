@@ -2,15 +2,14 @@ import VideoList from "./VideoList.js";
 import VideoPlayer from "./VideoPlayer.js";
 import Search from "./Search.js";
 import exampleVideoData from "../data/exampleVideoData.js";
-import YOUTUBE_API_KEY from "../config/youtube.js"
-
+import YOUTUBE_API_KEY from "../config/youtube.js";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       videos: exampleVideoData,
-      selected: exampleVideoData[0],
+      selected: exampleVideoData[0]
     };
   }
 
@@ -28,12 +27,12 @@ class App extends React.Component {
       max: 5
     };
 
-    this.props.searchYouTube( options, (videosArray) => {
+    this.props.searchYouTube(options, videosArray => {
       this.setState({
         videos: videosArray,
         selected: videosArray[0]
-      })
-    })
+      });
+    });
   }
 
   render() {
