@@ -1,9 +1,4 @@
 var VideoListEntry = props => {
-  const doThings = () => {
-    props.handler();
-    props.updateSelectedVideo();
-  };
-
   return (
     <div className="video-list-entry media">
       <div className="media-left media-middle">
@@ -14,7 +9,7 @@ var VideoListEntry = props => {
         />
       </div>
       <div className="media-body">
-        <div className="video-list-entry-title" onClick={doThings}>
+        <div className="video-list-entry-title" onClick={() => props.handler(props.video)}>
           {props.video.snippet.title}
         </div>
         <div className="video-list-entry-detail">
