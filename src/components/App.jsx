@@ -1,12 +1,13 @@
 import VideoList from "./VideoList.js";
 import VideoPlayer from "./VideoPlayer.js";
 import Search from "./Search.js";
+import exampleVideoData from "../data/exampleVideoData.js";
 
 var App = () => (
   <div>
     <Search />
     <VideoPlayer video={{}} />
-    <VideoList videos={[]} />
+    <VideoList videos={exampleVideoData} />
   </div>
 );
 
