@@ -4,13 +4,51 @@ import Search from "./Search.js";
 import exampleVideoData from "../data/exampleVideoData.js";
 import YOUTUBE_API_KEY from "../config/youtube.js";
 
+var initialVideo = {
+  id: {
+    videoId: ''
+  },
+  snippet: {
+    title: '',
+    description: '',
+    thumbnails: {
+      default: {
+        url: '',
+      }
+    },
+    channelTitle: '',
+  }
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: exampleVideoData,
-      selected: exampleVideoData[0]
+      videos: [],
+      selected: initialVideo,
+      search: ""
     };
+  }
+
+  searchHandler(event) {
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: event.target.value,
+      max: 5
+    };
+
+    const cb = function(videosArray) {
+      this.setState({
+        videos: videosArray,
+        selected: videosArray[0]
+      });
+    };
+
+    const debounced = _.debounce(() => {
+      this.props.searchYouTube(options, cb.bind(this));
+    }, 500);
+
+    debounced();
   }
 
   videoSelectHandler(video) {
@@ -23,7 +61,7 @@ class App extends React.Component {
     //make initial request
     var options = {
       key: YOUTUBE_API_KEY,
-      query: "react",
+      query: "react.js",
       max: 5
     };
 
@@ -38,7 +76,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Search />
+        <Search
+          searchHandler={this.searchHandler.bind(this)}
+          searchValue={this.state.search}
+        />
         <VideoPlayer video={this.state.selected} />
         <VideoList
           videos={this.state.videos}
